@@ -163,22 +163,12 @@ public class Display extends JFrame {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-
                 exit.setImage(ex1);
-
                 t.repaint();
-
-
             }
-
-
             @Override
-
             public void mouseClicked(MouseEvent e) {
-
                 System.exit(0);
-
-
             }
 
         });

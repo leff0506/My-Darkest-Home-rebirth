@@ -19,8 +19,6 @@ public class Input implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		if(View.run)
 		keys[e.getKeyCode()]=true;
-		System.out.println(e.getKeyChar());
-		
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
