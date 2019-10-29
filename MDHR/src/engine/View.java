@@ -10,32 +10,19 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class View extends JPanel {
-
-
-
-
     private AffineTransform transform;
-
     public static boolean run = true;
-
     private Polygon pol = new Polygon();
-
     public View() {
-
         super();
-
     }
 
     @Override
-
     public void paintComponent(Graphics g) {
-
         super.paintComponent(g);
-
-        Graphics2D g2 = (Graphics2D)g;
-        g2.drawString("lol",15,15);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.drawString("lol", 15, 15);
     }
-
     public void update(long time) {
 
     }

@@ -2,70 +2,40 @@ package engine;
 
 import engine.imagework.ImagePanel;
 import engine.input.Input;
-
 import javax.swing.*;
 import java.awt.Color;
-
 import java.awt.Component;
-
 import java.awt.Dimension;
-
 import java.awt.Toolkit;
-
 import java.awt.event.KeyEvent;
-
 import java.awt.event.MouseEvent;
-
 import java.awt.event.MouseListener;
-
-import java.awt.event.MouseMotionListener;
-
 import java.awt.image.BufferedImage;
-
 import java.io.File;
-
 import java.io.IOException;
-
 import java.util.ArrayList;
-
-
 import javax.imageio.ImageIO;
-
-import javax.sound.midi.SysexMessage;
-
-import javax.swing.*;
 
 
 public class Display extends JFrame {
-
-    private View display;
-
+    private View view;
     public Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-
     public boolean running;
-
-
     private ArrayList<Component> com = new ArrayList<>();
-
-    BufferedImage pl = null, pl1 = null, ex = null, ex1 = null;
-
-    Display t;
-
-    JPanel panel;
-
+    private BufferedImage pl = null, pl1 = null, ex = null, ex1 = null;
+    private Display thisDisplay;
+    private JPanel panel;
     public Display() {
-
         super();
-
-        t = this;
+        thisDisplay = this;
         setSize(size);
         setLocation(0, 0);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setUndecorated(true);
 //		setAlwaysOnTop(true);
 
-//		start();
-        menu();
+		start();
+//        menu();
     }
 
     private void menu() {
@@ -73,48 +43,26 @@ public class Display extends JFrame {
         panel.setBounds(0, 0, size.width, size.height);
         panel.setLayout(null);
         ImagePanel p = new ImagePanel();
-
         p.setBounds(0, 0, size.width, size.height);
-
         try {
-
             p.setImage(ImageIO.read(new File("MDHR/img/menu/1.jpg")));
-
         } catch (IOException e1) {
-
             // TODO Auto-generated catch block
-
             e1.printStackTrace();
-
         }
-
-
         try {
-
             pl = ImageIO.read(new File("MDHR/img/menu/Play1.png"));
-
             pl1 = ImageIO.read(new File("MDHR/img/menu/Play2.png"));
-
             ex = ImageIO.read(new File("MDHR/img/menu/Exit1.png"));
-
             ex1 = ImageIO.read(new File("MDHR/img/menu/Exit2.png"));
-
         } catch (IOException e) {
-
             // TODO Auto-generated catch block
-
             e.printStackTrace();
-
         }
-
         ImagePanel play = new ImagePanel();
-
         play.setBounds(40, size.height / 2, 300, 100);
-
         play.setImage(pl);
-
         play.addMouseListener(new MouseListener() {
-
 
             @Override
 
@@ -129,12 +77,12 @@ public class Display extends JFrame {
 
             public void mouseExited(MouseEvent e) {
                 play.setImage(pl);
-                t.repaint();
+                thisDisplay.repaint();
             }
             @Override
             public void mouseEntered(MouseEvent e) {
                 play.setImage(pl1);
-                t.repaint();
+                thisDisplay.repaint();
             }
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -159,12 +107,12 @@ public class Display extends JFrame {
             @Override
             public void mouseExited(MouseEvent e) {
                 exit.setImage(ex);
-                t.repaint();
+                thisDisplay.repaint();
             }
             @Override
             public void mouseEntered(MouseEvent e) {
                 exit.setImage(ex1);
-                t.repaint();
+                thisDisplay.repaint();
             }
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -186,12 +134,13 @@ public class Display extends JFrame {
         getContentPane().removeAll();
         repaint();
         addKeyListener(new Input());
-        display = new View();
-        display.setLayout(null);
-        display.setSize(size);
-        display.setBackground(new Color(28, 6, 3));
-        add(display);
+        view = new View();
+        view.setLayout(null);
+        view.setSize(size);
+        view.setBackground(new Color(28, 6, 3));
+        add(view);
         repaint();
+        setVisible(true);
         run();
     }
 
@@ -208,7 +157,7 @@ public class Display extends JFrame {
                 is = System.currentTimeMillis();
                 if (is - was >= 1000 / 60.0) {
                     updateInput();
-                    display.update(is - was);
+                    view.update(is - was);
                     repaint();
                     was = is;
 //					amFps++;
