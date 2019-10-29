@@ -23,16 +23,16 @@ import java.util.Comparator;
 
 import javax.imageio.ImageIO;
 
-import imageWork.AO;
-import imageWork.RO;
-import imageWork.View;
-import input.Input;
-import level.Level;
-import math.MathHelper;
-import objects.Battery;
-import objects.Coll;
-import trig.AudioTrigger;
-import trig.Trigger;
+import engine.imagework.AO;
+import engine.imagework.RO;
+import engine.imagework.View;
+import engine.input.Input;
+import engine.level.Level;
+import engine.math.MathHelper;
+import engine.objects.Battery;
+import engine.objects.Coll;
+import engine.trig.AudioTrigger;
+import engine.trig.Trigger;
 
 public class Player extends AO {
 	public ArrayList<RO> ten = new ArrayList<>();

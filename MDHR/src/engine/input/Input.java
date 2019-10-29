@@ -1,9 +1,9 @@
 package engine.input;
 
+import engine.imagework.View;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import engine.View;
 
 
 public class Input implements KeyListener{
